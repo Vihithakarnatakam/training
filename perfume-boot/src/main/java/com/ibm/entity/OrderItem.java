@@ -11,12 +11,12 @@ public class OrderItem {
 	//Each order item belongs to a user
 	@ManyToOne
 	@JoinColumn(name="userId") //joining the userId column (from Users java program) to this table
-	private Users user;
+	private User user;
 		
 	//Each order item is related to a product
 	@ManyToOne
 	@JoinColumn(name="prodId") //joining the prodId column (from Products java program) to this table
-	private Products products;
+	private Product products;
 	
 	@Column(length=30)
 	private int price;
@@ -32,19 +32,19 @@ public class OrderItem {
 		this.itemId = itemId;
 	}
 
-	public Users getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(Users user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 
-	public Products getProducts() {
+	public Product getProducts() {
 		return products;
 	}
 
-	public void setProducts(Products products) {
+	public void setProducts(Product products) {
 		this.products = products;
 	}
 

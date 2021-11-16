@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="products")
-public class Products {
+public class Product {
 	@Id @GeneratedValue @Column(name="prod_id")
 	private int prodId;
 	
@@ -14,23 +14,23 @@ public class Products {
 	
 	//each product can have MORE THAN 1 reviews
 	@OneToMany(mappedBy = "products") //on line "17" in review entity
-	private List<Review> revPid;
+	private List<ProductReview> revPid;
 	
 	//each product can be in order items
 	@OneToMany(mappedBy = "products") //on line "17" in orderItem entity
 	private List<OrderItem> itemPid;
 	
-	@Column(length=30)
+	@Column(length=100)
 	private String prodDesc;
 	
 	@Column(length=30)
-	private String type; //category
+	private String category; //type
 	
 	@Column(length=30)
 	private int sku;
 	
 	@Column(length=30)
-	private int price;
+	private long price;
 	
 	@Column(length=30)
 	private int discount;
@@ -38,7 +38,7 @@ public class Products {
 	@Column(length=30)
 	private int quantity;
 	
-	@Column(length=30)
+	@Column(length=250)
 	private int summary;
 
 	public int getProdId() {
@@ -57,11 +57,11 @@ public class Products {
 		this.prodName = prodName;
 	}
 
-	public List<Review> getRevPid() {
+	public List<ProductReview> getRevPid() {
 		return revPid;
 	}
 
-	public void setRevPid(List<Review> revPid) {
+	public void setRevPid(List<ProductReview> revPid) {
 		this.revPid = revPid;
 	}
 
@@ -81,12 +81,12 @@ public class Products {
 		this.prodDesc = prodDesc;
 	}
 
-	public String getType() {
-		return type;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public int getSku() {
@@ -97,11 +97,11 @@ public class Products {
 		this.sku = sku;
 	}
 
-	public int getPrice() {
+	public long getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(long price) {
 		this.price = price;
 	}
 

@@ -5,13 +5,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="users")
-public class Users {//give trigger of sku from products table 
+public class User {//give trigger of sku from products table 
 	@Id @GeneratedValue @Column(name="user_id")
 	private int userId;
 	
 	//each user can give MORE THAN 1 reviews
 	@OneToMany(mappedBy = "users") //on line "12" in orderItem java program
-	private List<Review> revUid;
+	private List<ProductReview> revUid;
 	
 	//each user is associated with many orderItems
 	@OneToMany(mappedBy = "users") //on line "12" in orderItem java program
@@ -24,12 +24,15 @@ public class Users {//give trigger of sku from products table
 	private String emailId;
 	
 	@Column(length=30)
-	private int phoneNo;
+	private String passwd;
 	
-	@Column(length=30)
+	@Column
+	private long phoneNo;
+	
+	@Column(length=50)
 	private String lineOne;
 	
-	@Column(length=30)
+	@Column(length=50)
 	private String lineTwo;
 	
 	@Column(length=30)
@@ -37,6 +40,9 @@ public class Users {//give trigger of sku from products table
 	
 	@Column(length=30)
 	private String state;
+	
+	@Column
+	private double pincode;
 
 	public int getUserId() {
 		return userId;
@@ -46,11 +52,11 @@ public class Users {//give trigger of sku from products table
 		this.userId = userId;
 	}
 
-	public List<Review> getRevUid() {
+	public List<ProductReview> getRevUid() {
 		return revUid;
 	}
 
-	public void setRevUid(List<Review> revUid) {
+	public void setRevUid(List<ProductReview> revUid) {
 		this.revUid = revUid;
 	}
 
@@ -78,11 +84,19 @@ public class Users {//give trigger of sku from products table
 		this.emailId = emailId;
 	}
 
-	public int getPhoneNo() {
+	public String getPasswd() {
+		return passwd;
+	}
+
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
+
+	public long getPhoneNo() {
 		return phoneNo;
 	}
 
-	public void setPhoneNo(int phoneNo) {
+	public void setPhoneNo(long phoneNo) {
 		this.phoneNo = phoneNo;
 	}
 
@@ -116,6 +130,14 @@ public class Users {//give trigger of sku from products table
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public double getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(double pincode) {
+		this.pincode = pincode;
 	}
 	
 	

@@ -4,41 +4,51 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="prod_review")
-public class Review {
-	@Id @GeneratedValue @Column(name="prod_id")
-	private int revId;
+public class ProductReview {
+	@Id @GeneratedValue @Column(name="prodreview_id")
+	private int prodrevId;
 	
 	//Each review belongs to a user
 	@ManyToOne
 	@JoinColumn(name="userId") //joining the userId column (from Users java program) to this table
-	private Users user;
+	private User user;
 	
 	//Each review is about a product
 	@ManyToOne
 	@JoinColumn(name="prodId") //joining the prodId column (from Products java program) to this table
-	private Products products;
+	private Product products;
+
+	@Column(length=30)
+	private String title;
 	
+	@Column
+	private int rating;
+	
+	@Column(length=1000)
+	private String revDesc;
+	
+	//created at timestamp needs to be added
 	public int getRevId() {
-		return revId;
+		return prodrevId;
 	}
 
 	public void setRevId(int revId) {
-		this.revId = revId;
+		this.prodrevId = revId;
 	}
 
-	public Users getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(Users user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 
-	public Products getProducts() {
+	public Product getProducts() {
 		return products;
 	}
 
-	public void setProducts(Products products) {
+	public void setProducts(Product products) {
 		this.products = products;
 	}
 
@@ -65,15 +75,4 @@ public class Review {
 	public void setRevDesc(String revDesc) {
 		this.revDesc = revDesc;
 	}
-
-	@Column(length=30)
-	private String title;
-	
-	@Column(length=30)
-	private int rating;
-	
-	@Column(length=30)
-	private String revDesc;
-	
-	//created at timestamp needs to be added
 }
